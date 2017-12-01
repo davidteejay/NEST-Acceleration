@@ -1,5 +1,5 @@
-function secondHighest(numbers){
-    let array = numbers.split(",");
+function secondHighest(array){
+    // let array = numbers.split(",");
 
     for (var i = 1; i < array.length; i++) {
         if (array[i - 1] > array[i]) {
@@ -12,4 +12,4 @@ function secondHighest(numbers){
     return array[array.length - 2];
 }
 
-console.log(secondHighest("3,2,7,5,6,9"))
+console.log(secondHighest([3,2,17,5,6,9]))
