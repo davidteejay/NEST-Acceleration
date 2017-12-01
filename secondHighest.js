@@ -1,9 +1,7 @@
 function secondHighest(array){
-    // let array = numbers.split(",");
-
     for (var i = 1; i < array.length; i++) {
         if (array[i - 1] > array[i]) {
-          var temp = array[i - 1];
+          let temp = array[i - 1];
           array[i - 1] = array[i];
           array[i] = temp;
         }
