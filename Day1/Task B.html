@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body></body>
+<script type="text/javascript">
+var body = document.querySelector("body");
+
+let item = (item) => {
+    if (item !== ""){
+        let li = document.createElement("li");
+        li.classList.add("item");
+        li.innerHTML = item;
+
+        return li;
+    }
+}
+
+let loadCart = () => {
+    let items = document.createElement("div");
+    items.classList.add("cart");
+
+    let ul = document.createElement("ul");
+    ul.classList.add("cartItems");
+
+    if (localStorage.getItem("cart") !== null){
+        cart = localStorage.getItem("cart");
+        var array = cart.split(",");
+        for (var i = 0; i < array.length; i++){
+            ul.appendChild(item(array[i]));
+        }
+    } else cart = "";
+
+    items.appendChild(ul);
+
+    let addItem = document.createElement("div");
+    addItem.classList.add("addItem");
+
+    let input = document.createElement("input");
+    let button = document.createElement("button");
+    button.innerHTML = "ADD ITEM";
+    button.addEventListener("click", () => {
+        let value = input.value;
+        if (value !== "") {
+            ul.appendChild(item(value));
+            if (cart === "") cart += value
+            else cart += "," + value;
+            console.log(cart)
+            localStorage.setItem("cart", cart);
+        }
+        input.value = "";
+        input.focus();
+    }, false);
+    button2 = document.createElement("button");
+    button2.classList.add("delete");
+    button2.innerHTML = "CLEAR";
+    button2.addEventListener("click", () => {
+        localStorage.clear();
+        alert("Cart Cleared");
+        window.location = "Task B.html";
+    }, false);
+
+    addItem.appendChild(input);
+    addItem.appendChild(button);
+    addItem.appendChild(button2);
+    items.appendChild(addItem);
+    return items;
+}
+body.appendChild(loadCart());
+</script>
+</html>

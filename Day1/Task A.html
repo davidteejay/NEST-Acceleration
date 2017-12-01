@@ -63,8 +63,12 @@ let ActionWidget = () => {
     deleteButton.innerHTML = "DELETE WIDGET";
     
     deleteButton.addEventListener("click", () => {
-        counter--;
-        body.removeChild(arrayOfInstances[counter])
+        if (counter === 0){
+            //do nothing
+        } else {
+            counter--;
+            body.removeChild(arrayOfInstances[counter])
+        }
     }, false);
     
     thirdCover.appendChild(add_Button);
