@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body></body>
+<script type="text/javascript">
+var body = document.querySelector("body");
+
+let DisplayWidget = () => {
+    let firstCover = document.createElement("div");
+    firstCover.classList.add("displayWidget", "widget");
+    
+    let label = document.createElement("label");
+    label.innerHTML = "This is the first widget";
+    
+    firstCover.appendChild(label);
+    return firstCover;
+}
+
+let InputWidget = () => {
+    let secondCover = document.createElement("div");
+    secondCover.classList.add("inputWidget", "widget");
+    
+    let label = document.createElement("div");
+    label.setAttribute("id", "inputLabel");
+    label.innerHTML = "Fill the textbox";
+    let input = document.createElement("input");
+    input.addEventListener("input",  (e) => {
+        let value = e.target.value;
+        if (value === "") label.innerHTML = "Fill the textbox";
+        else label.innerHTML = value;
+    }, false);
+    
+    secondCover.appendChild(label);
+    secondCover.appendChild(input);
+    return secondCover;
+}
+
+let ActionWidget = () => {
+    let arrayOfInstances = [];
+    let counter = 0;
+
+    let thirdCover = document.createElement("div");
+    thirdCover.classList.add("actionWidget", "widget");
+    
+    let add_Button = document.createElement("button");
+    add_Button.classList.add("add");
+    add_Button.innerHTML = "ADD WIDGET";
+
+    add_Button.addEventListener("click", () => {
+        arrayOfInstances[counter] = InputWidget();  
+        body.appendChild(arrayOfInstances[counter]);
+        counter++;
+    }, false);
+    
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete");
+    deleteButton.innerHTML = "DELETE WIDGET";
+    
+    deleteButton.addEventListener("click", () => {
+        counter--;
+        body.removeChild(arrayOfInstances[counter])
+    }, false);
+    
+    thirdCover.appendChild(add_Button);
+    thirdCover.appendChild(deleteButton);
+    return thirdCover;
+}
+
+var DisplayWidgetInstance = DisplayWidget();
+var InputWidgetInstance = InputWidget();
+var ActionWidgetInstance = ActionWidget();
+body.appendChild(DisplayWidgetInstance);
+body.appendChild(InputWidgetInstance);
+body.appendChild(ActionWidgetInstance);
+</script>
+</html>
