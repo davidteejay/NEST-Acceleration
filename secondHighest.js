@@ -1,13 +1,16 @@
 function secondHighest(array){
     for (var i = 1; i < array.length; i++) {
-        if (array[i - 1] > array[i]) {
-          let temp = array[i - 1];
-          array[i - 1] = array[i];
-          array[i] = temp;
+        for (var j = 1; j< array.length; j++){
+            if (array[j - 1] > array[j]) {
+                let temp = array[j - 1];
+                array[j - 1] = array[j];
+                array[j] = temp;
+            }
         }
     }
 
-    return array[array.length - 2];
+    // array = array.sort(function(a,b){return a - b})
+    return array[array.length - 2]
 }
 
-console.log(secondHighest([3,2,17,5,6,9]))
+console.log(secondHighest([3,9,17,5,6,2]))
